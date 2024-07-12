@@ -32,7 +32,7 @@ let userStore = useUserStore()
 let passInvis = ref(true)
 let passtype = ref("password")
 let loginData = ref({
-  username: 'hzw_9527',
+  username: 'qhdx_lmm',
   password: '123123',
 })
 let loginVali = ref()

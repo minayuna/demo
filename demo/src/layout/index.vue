@@ -2,7 +2,9 @@
   <div class="nav">
     <div class="nav-left">
       <img src="@/assets/image/组 4@2x(3).png" style="height: 30px; margin-right: 20px;">
-      <Menu></Menu>
+      <el-menu class="el-menu" mode="horizontal" :ellipsis="false" @select="handleSelect" default-active="home">
+        <Menu :menuList="menuList"></Menu>
+      </el-menu>
     </div>
     <el-dropdown v-if="isLogin">
       <span class="el-dropdown-link">
@@ -24,15 +26,27 @@
   <div v-if="loginFlag" class="login-wrap">
     <Login @leaveLoginBoard="leaveLoginBoard" />
   </div>
-  <router-view></router-view>
+  <div class="layout-main">
+    <Main></Main>
+  </div>
 </template>
 
 <script setup>
 import { ref, watchEffect } from 'vue';
+import { useRoute } from 'vue-router';
 import Login from '@/views/login/index.vue'
 import Menu from '@/layout/menu/index.vue'
+import Main from '@/layout/main/index.vue'
 import useUserStore from '@/stores/modules/user';
-
+import { constantRoute } from '@/router/routes'
+//过滤其他路由
+let menuList = constantRoute.filter(item => {
+  if(item.meta.nav) {
+    return true
+  }
+})
+console.log(menuList)
+let $route = useRoute()
 let userStore = useUserStore()
 let loginFlag = ref(false)
 let isLogin = ref(false)
@@ -91,5 +105,10 @@ const changePass = () => {
 
 .el-dropdown-link {
   width: 100px;
+}
+
+.el-menu {
+  height: 40px;
+  overflow: visible;
 }
 </style>

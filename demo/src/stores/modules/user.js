@@ -6,7 +6,8 @@ let useUserStore = defineStore('user', {
   state: () => {
     return {
       token: GET_TOKEN(),
-      username: ''
+      username: '',
+      userType: 0
     }
   },
   actions: {
@@ -21,12 +22,14 @@ let useUserStore = defineStore('user', {
       let info = await reqGetUserInfo()
       if(info.code === 200) {
         this.username = info.user.userName
+        this.userType = info.dsUser.userType
       }
     },
     logout() {
       REMOVE_TOKEN()
       this.token = ''
       this.username = ''
+      this.userType = 0
     }
   },
   getters: {
