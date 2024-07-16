@@ -7,7 +7,9 @@ let useUserStore = defineStore('user', {
     return {
       token: GET_TOKEN(),
       username: '',
-      userType: 0
+      userType: 0,
+      approveType: null,
+      readFlag: 0
     }
   },
   actions: {
@@ -23,6 +25,8 @@ let useUserStore = defineStore('user', {
       if(info.code === 200) {
         this.username = info.user.userName
         this.userType = info.dsUser.userType
+        this.approveType = info.dsUser.approveType
+        this.readFlag = info.dsUser.readFlag
       }
     },
     logout() {
