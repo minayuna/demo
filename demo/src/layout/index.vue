@@ -85,8 +85,7 @@ const changePass = () => {
 </script>
 
 <style scoped>
-.nav,
-.layout-main {
+.nav {
   display: flex;
   margin: auto;
   width: 65rem;
@@ -94,6 +93,9 @@ const changePass = () => {
   align-content: space-between;
   vertical-align: middle;
   align-items: center;
+}
+
+.layout-main {
 }
 
 .nav-left {
@@ -121,7 +123,12 @@ const changePass = () => {
 }
 
 .top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
   width: 100%;
+  background-color: white;
   box-shadow: 1px 4px 5px rgb(150, 150, 150);
 }
 

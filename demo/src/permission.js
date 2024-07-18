@@ -41,11 +41,12 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/' || to.path === '/home') {
       next()
     } else {
-      next({ path: '/'})
-      ElMessage({
-        type: 'error',
-        message: '请先登录!'
-      })
+      next()
+      // next({ path: '/'})
+      // ElMessage({
+      //   type: 'error',
+      //   message: '请先登录!'
+      // })
     }
   }
 })
